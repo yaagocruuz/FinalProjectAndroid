@@ -7,13 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-public class Tab1 extends Fragment {
+public class Tab4 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab1, container, false);
-
+        View rootView = inflater.inflate(R.layout.tab4, container, false);
         return rootView;
     }
 }

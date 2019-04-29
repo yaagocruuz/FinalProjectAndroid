@@ -19,6 +19,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new Tab2();
             case 2:
                 return new Tab3();
+            case 3:
+                return new Tab4();
             default:
                 return null;
         }
@@ -27,18 +29,20 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         //return the number of tabs
-        return 3;
+        return 4;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Tab 1";
+                return "Home";
             case 1:
-                return "Tab 2";
+                return "All Issues";
             case 2:
-                return "Tab 3";
+                return "My Issues";
+            case 3:
+                return "Map";
             default:
                 return null;
         }

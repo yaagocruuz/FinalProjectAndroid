@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "595799061228",
+    "firebase_url": "https://trabalho-android-20191.firebaseio.com",
+    "project_id": "trabalho-android-20191",
+    "storage_bucket": "trabalho-android-20191.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595799061228:android:58868709ffc52f7a",
+        "android_client_info": {
+          "package_name": "com.example.finalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595799061228-bmvlh76f62dfario65q5oonl967alv9i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finalproject",
+            "certificate_hash": "a000b0f20c28a3e0eacaf4188873d6ac3b360fd6"
+          }
+        },
+        {
+          "client_id": "595799061228-a710gja9ck0e3secc55a0vac3gl5hki2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrajyjJCx_02JMYvVAi54rNpEuU0dgXIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595799061228-a710gja9ck0e3secc55a0vac3gl5hki2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,6 @@
 package com.example.finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,8 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,26 +29,46 @@ public class Tab2 extends Fragment {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference firebaseRef = database.getReference();
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab2, container, false);
-
 
         DatabaseReference issues = firebaseRef.child("issues");
         issues.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ListView listView = getView().findViewById(R.id.issueList);
-                List<String> issueList = new ArrayList<>();
+                final List<Issue> issueList = new ArrayList<Issue>();
+                List<String> issueName = new ArrayList<String>();
                 Issue issue;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     issue = postSnapshot.getValue(Issue.class);
-                    issueList.add(issue.getIssueName());
+                    issueName.add(issue.getIssueName());
+                    issue.setIssueId(postSnapshot.getKey());
+                    Log.i("ISSUE",issue.getIssueId()+" --- "+issue.getIssueName());
+                    issueList.add(issue);
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, issueList);
+                        android.R.layout.simple_list_item_1, issueName);
                 listView.setAdapter(adapter);
+                listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        alert("onLongClick Ativado!! "+ issueList.get(position).getIssueId()+" --- "+issueList.get(position).getIssueName());
+                        Intent intent = new Intent(Tab2.super.getContext(),IssueView.class);
+                        Issue bundleIssue = issueList.get(position);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("issueID", bundleIssue.getIssueId());
+                        bundle.putString("issueName", bundleIssue.getIssueName());
+                        bundle.putString("issueAssignee", bundleIssue.getIssueAssignee());
+                        bundle.putDouble("issueHours", bundleIssue.getIssueTotalHours());
+                        intent.putExtra("Bundle",bundle);
+                        startActivity(intent);
+                        return true;
+                    }
+                });
             }
 
             @Override
@@ -53,5 +77,8 @@ public class Tab2 extends Fragment {
             }
         });
         return rootView;
+
+
     }
+    private void alert(String s){Toast.makeText(super.getContext(),s,Toast.LENGTH_LONG).show();}
 }

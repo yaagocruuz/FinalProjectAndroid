@@ -33,20 +33,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
 
-        Button btLogin = (Button) findViewById(R.id.btLogin);
+        Button btLogin = findViewById(R.id.btLogin);
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView tLogin = (TextView) findViewById(R.id.tLogin);
-                TextView tPassword = (TextView) findViewById(R.id.tPassword);
+                TextView tLogin = findViewById(R.id.tLogin);
+                TextView tPassword = findViewById(R.id.tPassword);
                 String login = tLogin.getText().toString();
                 String password = tPassword.getText().toString();
-                if(login.equals("yago") && password.equals("123")){
+                if(/*login.equals("yago") && password.equals("123")*/ 1 == 1){
                     alert("Login realizado");
                     setContentView(R.layout.activity_main);
                     createTabs();
 
-                    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                    FloatingActionButton fab = findViewById(R.id.fab);
                     fab.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

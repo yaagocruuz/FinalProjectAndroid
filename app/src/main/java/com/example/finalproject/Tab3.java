@@ -31,6 +31,7 @@ public class Tab3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab3, container, false);
+
         DatabaseReference issues = firebaseRef.child("issues");
         issues.addValueEventListener(new ValueEventListener() {
             @Override

@@ -8,19 +8,35 @@ import java.util.Calendar;
 
 class MyEventDay extends EventDay implements Parcelable {
     private String mNote;
+    private String mIssueName; //alterar para tipo Issue?
+    private double mHourLog; //qtd hora logada
 
-    MyEventDay(Calendar day, int imageResource, String note) {
+    MyEventDay(Calendar day, int imageResource, String note, String issueName/*, double hourLog*/) {
         super(day, imageResource);
         mNote = note;
+        mIssueName = issueName;
+        //mHourLog = hourLog;
     }
 
     String getNote() {
         return mNote;
     }
 
+    String getIssueName() {
+        return mIssueName;
+    }
+
+    /*
+    String getHourLog(){
+        return mHourLog;
+    }
+    */
+
     private MyEventDay(Parcel in) {
         super((Calendar) in.readSerializable(), in.readInt());
         mNote = in.readString();
+        mIssueName = in.readString();
+        //mHourLog = in.readDouble();
     }
 
     public static final Creator<MyEventDay> CREATOR = new Creator<MyEventDay>() {
@@ -40,6 +56,8 @@ class MyEventDay extends EventDay implements Parcelable {
         parcel.writeSerializable(getCalendar());
         parcel.writeInt(getImageResource());
         parcel.writeString(mNote);
+        parcel.writeString(mIssueName);
+        //parcel.writeDouble(mHourLog);
     }
 
     @Override

@@ -19,7 +19,8 @@ public class NotePreviewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        TextView note = (TextView) findViewById(R.id.note);
+        TextView note = findViewById(R.id.note);
+        TextView issueName = findViewById(R.id.issueNameView);
 
         if (intent != null) {
             Object event = intent.getParcelableExtra(Tab1.EVENT);
@@ -29,6 +30,7 @@ public class NotePreviewActivity extends AppCompatActivity {
 
                 getSupportActionBar().setTitle(getFormattedDate(myEventDay.getCalendar().getTime()));
                 note.setText(myEventDay.getNote());
+                issueName.setText(myEventDay.getIssueName()); //ACRESCENTAR O VALOR DA ISSUE NO TEXT VIEW
 
                 return;
             }

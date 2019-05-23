@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddNoteActivity extends AppCompatActivity {
+public class AddNoteActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference firebaseRef = database.getReference();
@@ -40,6 +41,7 @@ public class AddNoteActivity extends AppCompatActivity {
         final EditText noteEditText = findViewById(R.id.noteEditText);
 
         addItemsOnSpinner();
+        spinner.setOnItemSelectedListener(this);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +49,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 Intent returnIntent = new Intent();
 
                 MyEventDay myEventDay = new MyEventDay(datePicker.getSelectedDate(),
-                        R.drawable.sample_circle, noteEditText.getText().toString());
+                        R.drawable.sample_circle, noteEditText.getText().toString(), spinner.getSelectedItem().toString());
 
                 returnIntent.putExtra(Tab1.RESULT, myEventDay);
                 setResult(Activity.RESULT_OK, returnIntent);
@@ -66,7 +68,6 @@ public class AddNoteActivity extends AppCompatActivity {
         issues.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ListView listView = findViewById(R.id.myIssues);
                 Issue issue;
                 String name;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
@@ -91,6 +92,16 @@ public class AddNoteActivity extends AppCompatActivity {
         });
 
         //fim codigo firebase
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        parent.getItemAtPosition(pos);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
     }
 
 }

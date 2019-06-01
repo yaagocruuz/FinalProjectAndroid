@@ -33,7 +33,12 @@ public class Tab2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab2, container, false);
+        return rootView;
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         DatabaseReference issues = firebaseRef.child("issues");
         issues.addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,9 +80,7 @@ public class Tab2 extends Fragment {
 
             }
         });
-        return rootView;
-
-
     }
+
     private void alert(String s){Toast.makeText(super.getContext(),s,Toast.LENGTH_LONG).show();}
 }

@@ -31,8 +31,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.2.0'
 
     implementation 'com.google.firebase:firebase-messaging:17.6.0'
+    implementation 'com.firebaseui:firebase-ui-auth:4.1.0'
 
     implementation 'com.applandeo:material-calendar-view:1.0.1'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
 
 }
 

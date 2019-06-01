@@ -17,16 +17,19 @@
         <activity android:name=".NewIssue" />
         <activity android:name=".AddNoteActivity" />
         <activity android:name=".NotePreviewActivity" />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".FirebaseLoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".MainActivity"/>
+
         <activity android:name=".NewUser" />
         <service
             android:name=".MyFirebaseMessagingService"
@@ -48,7 +51,6 @@
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

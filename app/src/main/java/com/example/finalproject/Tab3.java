@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,8 +44,8 @@ public class Tab3 extends Fragment {
                 String name;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     issue = postSnapshot.getValue(Issue.class);
-                    name = issue.getIssueAssignee();
-                    if(name.equals("sergio")) {
+                    String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                    if(issue.getIssueAssignee().equals(userEmail)) {
                         issueList.add(issue.getIssueName());
                     }
                 }

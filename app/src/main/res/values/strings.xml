@@ -6,4 +6,5 @@
     <string name="tUsername">Username</string>
     <string name="tPassword">Password</string>
     <string name="tLogin">Login</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

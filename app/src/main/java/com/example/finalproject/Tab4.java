@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,11 +12,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Tab4 extends Fragment {
 
     public TextView internetStatus;
+    private Button btMap;
 
     @Nullable
     @Override
@@ -28,6 +31,7 @@ public class Tab4 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         internetStatus = getView().findViewById(R.id.internet_status);
+        btMap = getView().findViewById(R.id.btOpenMap);
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -37,6 +41,14 @@ public class Tab4 extends Fragment {
         } else {
             changeTextStatus(false);
         }
+
+        btMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openMapActivity = new Intent(Tab4.super.getContext(), MapsActivity.class);
+                startActivity(openMapActivity);
+            }
+        });
 
     }
 
@@ -62,4 +74,5 @@ public class Tab4 extends Fragment {
         super.onResume();
         MyApplication.activityResumed();// On Resume notify the Application
     }
+
 }

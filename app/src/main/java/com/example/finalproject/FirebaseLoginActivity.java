@@ -42,9 +42,14 @@ public class FirebaseLoginActivity extends AppCompatActivity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String emailText,passText;
                 email = findViewById(R.id.tLogin);
                 password = findViewById(R.id.tPassword);
-                signIn(email.getText().toString(), password.getText().toString());
+                emailText = email.getText().toString();
+                passText = password.getText().toString();
+                email.setText("");
+                password.setText("");
+                signIn(emailText, passText);
                 Log.println(2, TAG, "Email:" + email.getText().toString() + ", Senha: " + password.getText().toString());
             }
         });
@@ -54,12 +59,14 @@ public class FirebaseLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent newUserActivity = new Intent(FirebaseLoginActivity.this, NewUser.class);
+                email.setText("");
+                password.setText("");
                 startActivity(newUserActivity);
             }
         });
     }
 
-    private void signIn(String email, String password) {
+    private void signIn(final String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

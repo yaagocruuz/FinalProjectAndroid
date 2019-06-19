@@ -24,6 +24,10 @@ public class NewUser extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference firebaseRef = database.getReference();
     private FirebaseAuth auth = FirebaseAuth.getInstance();
+    private EditText firstName;
+    private EditText lastName;
+    private EditText email;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +38,27 @@ public class NewUser extends AppCompatActivity {
         btNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText firstName = findViewById(R.id.txNovoNome);
-                EditText lastName = findViewById(R.id.txNovoSobrenome);
-                EditText email = findViewById(R.id.txNovoEmail);
-                EditText password = findViewById(R.id.txNovoPass);
+                firstName = findViewById(R.id.txNovoNome);
+                lastName = findViewById(R.id.txNovoSobrenome);
+                email = findViewById(R.id.txNovoEmail);
+                password = findViewById(R.id.txNovoPass);
 
                 auth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(NewUser.this);
                         if(task.isSuccessful()){
+                            User user = new User(firstName.getText().toString(), email.getText().toString(), lastName.getText().toString());
+                            DatabaseReference newUser = firebaseRef.child("usuarios").push();
+                            newUser.setValue(user);
+                            firstName.setText("");
+                            email.setText("");
+                            lastName.setText("");
+                            password.setText("");
                             builder.setMessage("Cadastro Realizado com Sucesso");
                             dialog = builder.create();
                             dialog.show();
+                            finish();
                         }else{
                             builder.setMessage("Cadastro Incompleto");
                             dialog = builder.create();
@@ -55,20 +67,6 @@ public class NewUser extends AppCompatActivity {
                         }
                     }
                 });
-
-                //User user = new User(nome.getText().toString(), email.getText().toString(), senha.getText().toString(), sobrenome.getText().toString());
-                //DatabaseReference newUser = firebaseRef.child("usuarios").push();
-                //newUser.setValue(user);
-                //Log.i("Create User", "Usuário Cadastrado com Sucesso");
-                //nome.setText("");
-                //email.setText("");
-                //sobrenome.setText("");
-                //senha.setText("");
-                //alert("Usuário Criado com Sucesso");
-
-
-
-
             }
 
         });

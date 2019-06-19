@@ -18,21 +18,26 @@ public class IssueView extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference firebaseRef = database.getReference();
 
+    TextView nameEdit;
+    TextView userEdit;
+    TextView hoursEdit;
+    String issueID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_issue_view);
 
-        final TextView nameEdit = findViewById(R.id.tvEditName);
-        final TextView userEdit = findViewById(R.id.tvEditAssignee);
-        final TextView hoursEdit = findViewById(R.id.tvEditHours);
+        nameEdit = findViewById(R.id.tvEditName);
+        userEdit = findViewById(R.id.tvEditAssignee);
+        hoursEdit = findViewById(R.id.tvEditHours);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("Bundle");
         String bIssueName = bundle.getString("issueName");
         String bIssueAssignee = bundle.getString("issueAssignee");
         Double bIssueHours = bundle.getDouble("issueHours");
-        final String issueID = bundle.getString("issueID");
+        issueID = bundle.getString("issueID");
 
 
         nameEdit.setText(bIssueName);

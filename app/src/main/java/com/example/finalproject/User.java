@@ -4,22 +4,27 @@ import java.util.List;
 
 public class User {
     private String userId;
-    private String name;
+    private String firstName;
     private String email;
-    private String senha;
-    private String sobrenome;
+    private String lastName;
     private List<Issue> userIssues;
     private String userLocation; //Trocar de String para Location, ou algo do tipo.
 
     public User(){}
 
-    public User(String name, String email, String senha, String sobrenome) {
-        this.name = name;
+    public User(String firstName, String email, String lastName) {
+        this.firstName = firstName;
         this.email = email;
-        this.senha = senha;
-        this.sobrenome = sobrenome;
+        this.lastName = lastName;
     }
 
+    public String getFirstName() {return firstName;}
+
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+
+    public String getLastName() {return lastName;}
+
+    public void setLastName(String lastName) {this.lastName = lastName;}
 
     public String getEmail() {
         return email;
@@ -29,36 +34,12 @@ public class User {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
     }
 
     public List<Issue> getUserIssues() {

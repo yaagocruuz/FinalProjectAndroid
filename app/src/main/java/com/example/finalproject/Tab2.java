@@ -29,6 +29,8 @@ public class Tab2 extends Fragment {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference firebaseRef = database.getReference();
 
+    private List<Issue> issueList;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class Tab2 extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ListView listView = getView().findViewById(R.id.issueList);
-                final List<Issue> issueList = new ArrayList<Issue>();
+                issueList = new ArrayList<Issue>();
                 List<String> issueName = new ArrayList<String>();
                 Issue issue;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
